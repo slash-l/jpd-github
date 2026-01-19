@@ -1,7 +1,7 @@
 name: "Setup JFrog CLI OIDC Example"
 on:
   push:
-    branches: [main]
+    branches: [demo-jfrogchina]
 
 permissions:
   # This is required for requesting the OIDC token
@@ -17,11 +17,18 @@ jobs:
       - name: Setup JFrog CLI
         uses: jfrog/setup-jfrog-cli@v4
         env:
-          JF_URL: ${{ vars.JF_URL }}
+          JF_URL: ${{ vars.JF_CHINA_URL }}
         with:
-          oidc-provider-name: slash-l/jpd-github@github
+          oidc-provider-name: slash-github
+          oidc-audience: slash-github-audience
 
       - name: Run JFrog CLI
         run: |
           # Ping the server
           jf rt ping
+          # Collect environment variables for the build
+          jf rt bce
+          # Collect VCS details from git and add them to the build
+          jf rt bag
+          # Publish build info
+          jf rt bp
