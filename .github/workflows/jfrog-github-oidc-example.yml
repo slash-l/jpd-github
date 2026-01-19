@@ -1,5 +1,17 @@
 name: "Setup JFrog CLI OIDC Example"
-on: push
+# on: push
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: '选择环境'
+        required: true
+        default: 'demo-jfrogchina'
+        type: choice
+        options:
+        - demo-jfrogchina
+        - soleng-jfrog
 
 permissions:
   # This is required for requesting the OIDC token
