@@ -1,4 +1,4 @@
-name: "Setup JFrog CLI OIDC Example"
+name: "JFrog GitHub Demo"
 on:
   push:
     branches: [demo-jfrogchina]
@@ -7,7 +7,10 @@ permissions:
   # This is required for requesting the OIDC token
   id-token: write
   # This is required for actions/checkout
-  contents: read
+  contents: write
+  pull-requests: write
+  security-events: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -38,3 +41,8 @@ jobs:
           jf rt bce slash-jpd-github-npm ${{github.run_number}}
           jf rt bp slash-jpd-github-npm ${{github.run_number}}
           
+      - name: Build and Publish NPM Package
+        working-directory: ./app-npm  # 设置工作目录
+        run: |
+          echo "Xray Scan Build Artifacts"
+          jf bs --build-name=slash-jpd-github-npm --build-number=${{github.run_number}}
