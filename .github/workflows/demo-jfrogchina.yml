@@ -45,4 +45,4 @@ jobs:
         working-directory: ./app-npm  # 设置工作目录
         run: |
           echo "Xray Scan Build Artifacts"
-          jf bs --build-name=slash-jpd-github-npm --build-number=${{github.run_number}}
+          jf bs slash-jpd-github-npm ${{github.run_number}}
