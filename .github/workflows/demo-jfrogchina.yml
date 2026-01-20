@@ -32,9 +32,9 @@ jobs:
         working-directory: ./app-npm  # 设置工作目录
         run: |
           echo "当前目录: $(pwd)"
-          # jf npmc 
-          # jf npm install --build-name=slash-jpd-github-npm --build-number=1
-          # jf npm publish --build-name=slash-jpd-github-npm --build-number=1
-          # jf rt bce slash-jpd-github-npm 1
-          # jf rt bp slash-jpd-github-npm 1
+          jf npmc --server-id-resolve=setup-jfrog-cli-server --server-id-deploy=setup-jfrog-cli-server --repo-resolve=slash-npm-virtual --repo-deploy=slash-npm-virtual
+          jf npm install --build-name=slash-jpd-github-npm --build-number=${{github.run_number}}
+          jf npm publish --build-name=slash-jpd-github-npm --build-number=${{github.run_number}}
+          jf rt bce slash-jpd-github-npm ${{github.run_number}}
+          jf rt bp slash-jpd-github-npm ${{github.run_number}}
           
