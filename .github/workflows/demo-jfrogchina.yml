@@ -30,15 +30,15 @@ jobs:
           jf rt ping
           jf c show
 
-      - name: Run JFrog CLI Frogbot Scan
-        uses: jfrog/frogbot@v2
-        env:
-          JF_URL: ${{ vars.JF_CHINA_URL }}
-          JF_GIT_TOKEN: ${{ secrets.SLASH_GITHUB_TOKEN }}
-          JF_ACCESS_TOKEN: ${{ secrets.JF_ACCESS_TOKEN }}
-        # with:
-        #   oidc-provider-name: slash-github
-        #   oidc-audience: slash-github-audience
+      # - name: Run JFrog CLI Frogbot Scan
+      #   uses: jfrog/frogbot@v2
+      #   env:
+      #     JF_URL: ${{ vars.JF_CHINA_URL }}
+      #     JF_GIT_TOKEN: ${{ secrets.SLASH_GITHUB_TOKEN }}
+      #     JF_ACCESS_TOKEN: ${{ secrets.JF_ACCESS_TOKEN }}
+      #   # with:
+      #   #   oidc-provider-name: slash-github
+      #   #   oidc-audience: slash-github-audience
       
       - name: Run JFrog Curation Audit
         working-directory: ./app-npm  # 设置工作目录
