@@ -51,7 +51,7 @@ jobs:
           jf rt bce slash-jpd-github-npm ${{github.run_number}}
           jf rt bp slash-jpd-github-npm ${{github.run_number}}
           
-      - name: Build and Publish NPM Package
+      - name: Xray Scan Build Artifacts
         working-directory: ./app-npm  # 设置工作目录
         run: |
           echo "Xray Scan Build Artifacts"
