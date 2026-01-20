@@ -10,6 +10,8 @@ permissions:
   contents: write
   pull-requests: write
   security-events: write
+  attestations: write
+  artifact-metadata: write
 
 jobs:
   build:
@@ -56,3 +58,12 @@ jobs:
         run: |
           echo "Xray Scan Build Artifacts"
           jf bs slash-jpd-github-npm ${{github.run_number}}
+
+      - name: Attest Send to JFrog Evidence
+        uses: actions/attest-build-provenance@v3
+        with:
+          # The 'oci://' prefix is required by JFrog to correctly parse the artifact type
+          # subject-name: npm://demo.jfrogchina.com/artifactory/slash-npm-dev-local/app-npm/app-npm:1.0.0
+          
+          # This links the attestation directly to the image digest from the build step
+          subject-digest: sha256:67695ebf9f9e2c612336a1e77af73d7ffbe6e9af72d1629411e19120af352a80
