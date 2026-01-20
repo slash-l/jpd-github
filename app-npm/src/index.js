@@ -45,6 +45,8 @@ export class DemoProject {
       }
     });
     console.log('===========================');
+
+    token = 'AP9H11kdZT7jHS9C1J4o94A9edd';
     
     return info;
   }
