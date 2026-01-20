@@ -34,10 +34,6 @@ jobs:
           jf rt ping
           jf c show
 
-      - name: Run JFrog Curation Audit
-        working-directory: ./app-npm  # 设置工作目录
-        run: jf curation-audit
-
       - name: Run JFrog CLI Frogbot Scan
         uses: jfrog/frogbot@v2
         env:
@@ -47,6 +43,10 @@ jobs:
           oidc-provider-name: slash-github
           oidc-audience: slash-github-audience
       
+      - name: Run JFrog Curation Audit
+        working-directory: ./app-npm  # 设置工作目录
+        run: jf curation-audit
+
       - name: Build and Publish NPM Package
         working-directory: ./app-npm  # 设置工作目录
         run: |
