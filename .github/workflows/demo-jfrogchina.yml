@@ -30,6 +30,14 @@ jobs:
           # Ping the server
           jf rt ping
           jf c show
+
+      - name: Run JFrog CLI Frogbot Scan
+        uses: jfrog/frogbot@v2
+        env:
+          JF_URL: ${{ vars.JF_CHINA_URL }}
+          JF_GIT_TOKEN: ${{ secrets.SLASH_GITHUB_TOKEN }}
+        with:
+          oidc-provider-name: slash-github
       
       - name: Build and Publish NPM Package
         working-directory: ./app-npm  # 设置工作目录
