@@ -5,7 +5,7 @@ on:
 
 permissions:
   # This is required for requesting the OIDC token
-  id-token: write
+  # id-token: write
   # This is required for actions/checkout
   contents: write
   pull-requests: write
