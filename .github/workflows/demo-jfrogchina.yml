@@ -37,9 +37,13 @@ jobs:
       - name: Run JFrog CLI Frogbot Scan
         uses: jfrog/frogbot@v2
         env:
-          JF_URL: ${{ vars.JF_CHINA_URL }}
           JF_GIT_TOKEN: ${{ secrets.SLASH_GITHUB_TOKEN }}
-          JF_ACCESS_TOKEN: ${{ secrets.JF_CHINA_ACCESS_TOKEN }}
+          # JF_URL: ${{ vars.JF_CHINA_URL }}
+          # JF_ACCESS_TOKEN: ${{ secrets.JF_CHINA_ACCESS_TOKEN }}
+          JF_URL: ${{ vars.JF_URL }}
+          JF_ACCESS_TOKEN: ${{ secrets.JF_SOLENG_ACCESS_TOKEN }}
+
+
         # with:
         #   oidc-provider-name: slash-github
         #   oidc-audience: slash-github-audience
