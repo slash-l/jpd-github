@@ -65,17 +65,20 @@ jobs:
 
           npm version ${BASE_VERSION}.${BUILD_NUMBER} --no-git-tag-version
 
-          jf npmc --server-id-resolve=setup-jfrog-cli-server --server-id-deploy=setup-jfrog-cli-server --repo-resolve=slash-npm-virtual --repo-deploy=slash-npm-virtual
-          jf npm install --build-name=slash-jpd-github-npm --build-number=${{github.run_number}}
-          jf npm publish --build-name=slash-jpd-github-npm --build-number=${{github.run_number}}
-          jf rt bce slash-jpd-github-npm ${{github.run_number}}
-          jf rt bp slash-jpd-github-npm ${{github.run_number}}
+          # jf npmc --server-id-resolve=setup-jfrog-cli-server --server-id-deploy=setup-jfrog-cli-server --repo-resolve=slash-npm-virtual --repo-deploy=slash-npm-virtual
+          # jf npm install --build-name=slash-jpd-github-npm --build-number=${{github.run_number}}
+          # jf npm publish --build-name=slash-jpd-github-npm --build-number=${{github.run_number}}
+          # jf rt bce slash-jpd-github-npm ${{github.run_number}}
+          # jf rt bp slash-jpd-github-npm ${{github.run_number}}
+
+          npm clean install
+          npm deploy
           
-      - name: Xray Scan Build Artifacts
-        working-directory: ./app-npm  # 设置工作目录
-        run: |
-          echo "Xray Scan Build Artifacts"
-          jf bs slash-jpd-github-npm ${{github.run_number}}
+      # - name: Xray Scan Build Artifacts
+      #   working-directory: ./app-npm  # 设置工作目录
+      #   run: |
+      #     echo "Xray Scan Build Artifacts"
+      #     jf bs slash-jpd-github-npm ${{github.run_number}}
 
       # - name: Attest Send to JFrog Evidence
       #   uses: actions/attest-build-provenance@v3
