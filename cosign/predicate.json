@@ -1,0 +1,7 @@
+{
+  "actor": "slash",
+  "checks": {
+    "unit_tests": "passed",
+    "vuln_scan": "passed"
+  }
+}

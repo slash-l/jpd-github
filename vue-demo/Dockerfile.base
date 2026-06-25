@@ -1,0 +1,20 @@
+# Dockerfile.base
+FROM node
+
+USER root
+
+ARG JFROG_URL
+ARG JFROG_TOKEN
+
+# 安装 jf CLI
+RUN curl -fL https://install-cli.jfrog.io | sh
+
+# 配置 JPD 连接
+RUN jf config add artifactory \
+    --url=${JFROG_URL} \
+    --access-token=${JFROG_TOKEN} \
+    --interactive=false
+
+# 配置 npm 解析仓库
+RUN jf npm-config --server-id-resolve=artifactory --repo-resolve=slash-npm-virtual \
+    --server-id-deploy=artifactory --repo-deploy=slash-npm-virtual
