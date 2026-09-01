@@ -3,22 +3,21 @@
   "version": "1.0.2",
   "description": "app npm demo",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node --test"
   },
   "author": "",
   "license": "ISC",
-
-  "publishConfig":{
-    "registry":"https://demo.jfrogchina.com/artifactory/api/npm/slash-npm-virtual/"
+  "publishConfig": {
+    "registry": "https://demo.jfrogchina.com/artifactory/api/npm/slash-npm-virtual/"
   },
-
   "dependencies": {
-    "axios": "1.15.1",
-    "lodash": "4.17.10",
+    "axios": "1.15.2",
     "cors": "^2.8.5",
     "crossenv": "1.0.1",
     "ejs": "^2.5.5",
-    "json-schema-deref": "0.1.0"
+    "json-schema-deref": "0.1.0",
+    "lodash": "4.17.10"
   }
 }

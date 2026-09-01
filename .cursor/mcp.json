@@ -8,8 +8,13 @@
 				"${workspaceFolder}"
 			]
 		},
-		"jfrog-mcp": {
-			"url": "https://soleng.jfrog.io/mcp"
+		"JFrogMCPGateway": {
+			"command": "jf",
+			"type": "stdio",
+			"args": ["mcp-gateway", "run"],
+			"env": {
+				"JFROG_CLI_INSECURE_TLS": "true"
+			}
 		}
 	}
 }

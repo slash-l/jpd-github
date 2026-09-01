@@ -1,6 +1,21 @@
-import { fetchData, processData } from './utils.js';
-import lodash from 'lodash';
-import moment from 'moment';
+export async function fetchData(url) {
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error(`Failed to fetch ${url}: ${response.status}`);
+  }
+  return response.json();
+}
+
+export function processData(data) {
+  if (!Array.isArray(data)) {
+    return [];
+  }
+
+  return data.slice(0, 5).map((item) => ({
+    id: item.id,
+    name: item.name || item.title || item.username || 'unknown'
+  }));
+}
 
 export class DemoProject {
   constructor(config = {}) {
@@ -26,8 +41,7 @@ export class DemoProject {
     const info = {
       project: 'npm-demo-project',
       version: this.version,
-      currentTime: moment().format('YYYY-MM-DD HH:mm:ss'),
-      lodashVersion: lodash.VERSION,
+      currentTime: new Date().toISOString(),
       features: [
         'External dependency management',
         'Tar.gz packaging',
@@ -46,8 +60,6 @@ export class DemoProject {
     });
     console.log('===========================');
 
-    token = 'AP9H11kdZT7jHS9C1J4o94A9edd';
-    
     return info;
   }
 }
@@ -56,13 +68,12 @@ export class DemoProject {
 export default DemoProject;
 
 // 示例使用
-if (require.main === module) {
+if (process.argv[1] && import.meta.url === `file://${process.argv[1]}`) {
   const demo = new DemoProject();
   demo.displayInfo();
-  
-  // 示例API调用
+
   demo.getUsers()
-    .then(users => {
+    .then((users) => {
       console.log(`Fetched ${users.length} users`);
     })
     .catch(console.error);

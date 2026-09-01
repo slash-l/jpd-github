@@ -8,7 +8,23 @@ public class XmlHelper {
 
     public XmlHelper() {
         this.xstream = new XStream();
-        // 注意：这里没有调用 setupDefaultSecurity，是漏洞触发点
+        XStream.setupDefaultSecurity(this.xstream);
+        this.xstream.allowTypesByWildcard(new String[] {
+                "java.util.ArrayList",
+                "java.util.HashMap",
+                "java.util.LinkedHashMap",
+                "java.util.LinkedHashSet",
+                "java.lang.Boolean",
+                "java.lang.Byte",
+                "java.lang.Double",
+                "java.lang.Float",
+                "java.lang.Integer",
+                "java.lang.Long",
+                "java.lang.Short",
+                "java.lang.String",
+                "java.math.BigDecimal",
+                "java.math.BigInteger"
+        });
     }
 
     public String toXml(Object obj) {
@@ -16,7 +32,6 @@ public class XmlHelper {
     }
 
     public Object fromXml(String xml) {
-        // CVE-2021-21344: 反序列化任意类，可导致 RCE
         return xstream.fromXML(xml);
     }
 }

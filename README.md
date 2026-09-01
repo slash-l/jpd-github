@@ -85,8 +85,8 @@ https://github.com/jfrog/Evidence-Examples/tree/main/examples/github
 
 创建 application version
 ```
-jf apptrust version-create slash-application 1.3.1 --source-type-packages "type=docker, name=app-maven-docker, version=44, repo-key=slash-docker-dev-local" \
---source-type-builds "name=slash-jpd-github-maven, id=44"
+jf apptrust version-create slash-application 1.3.1 --source-type-packages "type=docker, name=app-maven-docker, version=53, repo-key=slash-docker-dev-local" \
+--source-type-builds "name=slash-jpd-github-maven, id=53"
 ```
 
 
